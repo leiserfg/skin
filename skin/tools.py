@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+import sys
+
 COMPLETION_SCRIPTS = {
     'bash': """
 _skin_completion()
@@ -7,7 +10,8 @@ _skin_completion()
                    SKIN_AUTO_COMPLETE=1 $1 ) )
 }
 complete -o default -F _skin_completion skin
-""", 'zsh': """
+""",
+    'zsh': """
 function _skin_completion {
   local words cword
   read -Ac words
@@ -19,10 +23,11 @@ function _skin_completion {
 compctl -K _skin_completion skin
 """}
 
+
 def completion(shell):
     shell_options = COMPLETION_SCRIPTS.keys()
     if shell in shell_options:
         print COMPLETION_SCRIPTS[shell]
     else:
-        sys.stderr.write('ERROR: You must pass %s\n' % ' or '.join(shell_options))
-
+        sys.stderr.write('ERROR: You must pass %s\n' %
+                         ' or '.join(shell_options))
