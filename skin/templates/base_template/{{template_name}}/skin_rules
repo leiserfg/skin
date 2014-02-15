@@ -1,0 +1,14 @@
+#here you can use this functions or import whatever you nit
+#it's is yust python
+#prompt, prompt_bool, echo_off_prompt, rm, call
+
+data{
+#on this dict, put yours vars
+
+}
+
+
+#this function is for make some magic you want after rendering
+#def post_render():
+#   call(['me', '--maybe'])
+

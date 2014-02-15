@@ -1,0 +1,3 @@
+#include MANIFEST.in README.rst LICENSE
+recursive-include skin/templates *
+

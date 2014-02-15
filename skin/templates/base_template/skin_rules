@@ -1,0 +1,3 @@
+data = {
+	'template_name' : prompt('template name:')
+}
