@@ -2,6 +2,8 @@
 from setuptools import setup, find_packages
 from [[package]] import __version__
 
+
+
 setup(
     name='[[package]]',
     version=__version__,
@@ -14,7 +16,7 @@ setup(
     #long_description=open('README.rst').read(),
     #license='BSD License',
     #entry_points = {
-    #    'console_scripts': ['[[package]] = skin.cli:main'],
+    #    'console_scripts': ['[[package|replace(' ', '_')]] = [[package|replace(' ', '_')]].cli:main'],
     #},
     install_requires=[
     

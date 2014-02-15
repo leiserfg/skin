@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup,find_packages
-from skin import __version__
+from setuptools import setup, find_packages
+from asdf import __version__
+
+
 
 setup(
-    name='skin',
+    name='asdf',
     version=__version__,
-    author='Leiser Ferández Gallo',
-    author_email='leiserfg@gmail.com',
+    author='asdf',
+    author_email='asdf',
     include_package_data = True,
     packages=find_packages(),
-    description='a simple static template render',
+    description='asdf',
+    url='asdf',   
     #long_description=open('README.rst').read(),
-    license='BSD License',
-    url='https://github.com/leiserfg/skin/',
-    entry_points = {
-        'console_scripts': ['skin = skin.cli:main'],
-    },
+    #license='BSD License',
+    #entry_points = {
+    #    'console_scripts': ['asdf = asdf.cli:main'],
+    #},
     install_requires=[
-        'jinja2>=2.7',
-        'colorama>=0.2.5'
+    
         ]
 )
