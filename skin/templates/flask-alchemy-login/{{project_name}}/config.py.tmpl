@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+from os.path import join, abspath, dirname
+
+_basedir = abspath(dirname(__file__))
+
+
+SECRET_KEY = '[[secret_key]]'
+
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + join(_basedir, 'app.db')
+#SQLALCHEMY_ECHO = True
+DATABASE_CONNECT_OPTIONS = {}
+
+
