@@ -9,7 +9,7 @@
 	\_______)|_/    \/\_______/|/    )_)
 
 ```                                    
-Skin is a project template (something like PasteScript but without Paste itself) powered by Jinja2 and a lot of needs of something like it.
+Skin is a project template renderer (something like PasteScript but without Paste itself) powered by Jinja2 and a lot of needs of something like it.
 I marge here the best I see in mr.bob and marek and use some lines (actually a lot) of Voodoo.
 
 Installing
