@@ -5,53 +5,105 @@
 
     There is where the management of the project template happens
 
-    Little modifications to werkzeug.templates
-
     :copyright: (c) 2015 by the Leiser Fernández Gallo.
     :license: BSD License.
 """
-from os import walk, mkdir
-from os.path import relpath, join, split
-from shutil import copy, move
+from os import walk, mkdir, listdir, isdir, rename, remove
+from os.path import (relpath, join, split, expanduser, exists, 
+                     abspath, dirname, basename)
+from shutil import copy
 from _compat import Queue
 from codecs import open
+from errno import ENOENT
 
 from templates import Template
 
+_here = unicode(dirname(abspath(__file__)))
+TEMPLATES_DIR = (expanduser(join(u'~', u'.skin')), join(_here, u'templates'))
+RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "rm", "call")
+_skins = None
 
-def skin_path_from_name(name):
+
+def _skins2paths():
+    global _skins
+    if _skins:
+        return _skins
+
+    for td in TEMPLATES_DIR:
+        if not exists(td):
+            continue
+        for d in listdir(td):
+            d = abspath(join(td, d))
+            if isdir(d):
+                _skins[basename(d)] = d
+    return _skins
+
+
+def skin_path(name):
     """
     Find a skin in the skins folders and return a path to be rendered
     :param name: Name of the skin
     :type name: unicode
     :rtype: unicode
     """
-    # TODO
-    pass
+    return _skins2paths()[name]
 
 
-def render(file_input, file_output, data):
-    tmpl = Template.from_file(file_input)
-    with open(file_output, mode='w', encoding='utf-8') as f:
+def list_skins():
+    """
+    List of skins name
+    :rtype: list(unicode)
+    """
+    return list(_skins2paths())
+
+
+def render(template_file, output_file, data):
+    """
+    Render a template file to another file
+
+    :param template_file: file path to load the template
+    :type template_file: unicode
+    :param output_file: file path to the output
+    :type output_file: unicode
+    :param data: dict that map name to values for being used as
+                 context of the templates
+    :type data: dict
+    """
+    tmpl = Template.from_file(template_file)
+    with open(output_file, mode='w', encoding='utf-8') as f:
         f.write(tmpl.render(data))
 
 
-def render_skin(name, data, output_path):
+def loadvars(filepath):
+    """
+    Load visible vars from the rules file
+    """
+    if not exists(filepath):
+        return {}
+
+    import utils
+    glob = {k: getattr(utils, k) for k in RULES_UTILS}
+    local = {}
+    execfile(filepath, glob, local)
+    return local
+
+
+def render_skin(name, output_path):
     """
     Render a skin giving their name and the data to fill it in a giving path
     :param name: Name of the skin
     :type name: unicode
-    :param data: dict that map name to values for being used as context of 
-                 the templates
-    :type data: dict
-    :param output_path: absolute path to write the rendered skin
+    :param data: dict that map name to values for being used as
+                 context of the templates
     :type output_path: unicode
     """
-    skin_path = skin_path_from_name(name)
-    torename = Queue()
+    _skin_path = skin_path(name)
+    to_rename = Queue()  # Copy first rename latter
 
-    for root, folders, files in walk(skin_path):
-        rel = relpath(root, skin_path)
+    data = loadvars(join(_skin_path, 'skin_rules'))
+
+    for root, folders, files in walk(_skin_path):
+        rel = relpath(root, _skin_path)
 
         for topfile in files:
             file_input = join(root, file)
@@ -60,16 +112,21 @@ def render_skin(name, data, output_path):
                 render(file_input, file_output, data)
             else:
                 copy(file_input, file_output)
-            torename.put(file_output)
+            to_rename.put(file_output)
 
         for folder in folders:
             folder_path = join(output_path, rel, folder)
             mkdir(folder_path)
-            torename.put(folder_path)
+            to_rename.put(folder_path)
 
-    while not torename.empty():
-        thing = torename.get()
-        dirname, basename = split(thing)
+    while not to_rename.empty():
+        path = to_rename.get()
+        dirname, basename = split(path)
         basename = Template(basename).render(data)
-        move(thing, join(dirname, basename))
+        rename(path, join(dirname, basename))
 
+    try:
+        remove(join(output_path, 'skin_rules'))
+    except OSError as e:
+        if e.errno != ENOENT:
+            raise
