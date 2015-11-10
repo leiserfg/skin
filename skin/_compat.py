@@ -10,8 +10,12 @@ PY2 = sys.version_info[0] == 2
 
 if PY2:
     string_types = basestring
+    from Queue import Queue
 else:
     string_types = str
+    from queue import Queue
+
+
 
 
 def to_unicode(txt, encoding='utf8'):
