@@ -5,6 +5,7 @@ from argparse import ArgumentParser
 import colorama
 import kernel
 import tools
+from core import list_skins
 
 parser = ArgumentParser(description="Project templates filler", prog='skin')
 exclusives_group = parser.add_mutually_exclusive_group()
@@ -44,7 +45,7 @@ def main():
     colorama.init()
     args = parser.parse_args()
     if args.list:
-        for t in kernel.templates():
+        for t in list_skins():
             print t
         return
     elif args.bash:
