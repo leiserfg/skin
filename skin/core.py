@@ -8,9 +8,9 @@
     :copyright: (c) 2015 by the Leiser Fernández Gallo.
     :license: BSD License.
 """
-from os import walk, mkdir, listdir, isdir, rename, remove
+from os import walk, mkdir, listdir, rename, remove
 from os.path import (relpath, join, split, expanduser, exists, 
-                     abspath, dirname, basename)
+                     abspath, dirname, basename, isdir)
 from shutil import copy
 from _compat import Queue
 from codecs import open
@@ -28,6 +28,7 @@ def _skins2paths():
     global _skins
     if _skins:
         return _skins
+    _skins = {}
 
     for td in TEMPLATES_DIR:
         if not exists(td):
