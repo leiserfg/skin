@@ -16,7 +16,7 @@ exclusives_group.add_argument(
 exclusives_group.add_argument(
     '-z', '--zsh', action='store_true', help='Zsh Completion')
 parser.add_argument('template',
-                    help='Render a template in the'
+                    help='Render a template in the '
                          'current working directory',
                     nargs='?')
 parser.epilog = "Put your own templates at: %s\n" % kernel._templates_dirs[0]
