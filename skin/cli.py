@@ -5,7 +5,9 @@ from argparse import ArgumentParser
 import colorama
 import kernel
 import tools
-from core import list_skins
+from core import list_skins, render_skin
+from os import getcwd
+from os.path import abspath
 
 parser = ArgumentParser(description="Project templates filler", prog='skin')
 exclusives_group = parser.add_mutually_exclusive_group()
@@ -53,7 +55,7 @@ def main():
     elif args.zsh:
         tools.completion('zsh')
     elif args.template:
-        kernel.render(args.template)
+        render_skin(args.template, abspath(getcwd()))
     else:
         parser.print_help()
 

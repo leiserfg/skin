@@ -106,10 +106,11 @@ def render_skin(name, output_path):
     for root, folders, files in walk(_skin_path):
         rel = relpath(root, _skin_path)
 
-        for topfile in files:
+        for file in files:
             file_input = join(root, file)
-            file_output = join(output_path, rel, file[:-5])
+            file_output = join(output_path, rel, file)
             if file.endswith('.tmpl'):
+                file_output = file_output[:-5]
                 render(file_input, file_output, data)
             else:
                 copy(file_input, file_output)
