@@ -8,13 +8,13 @@
     :copyright: (c) 2015 by the Leiser Fernández Gallo.
     :license: BSD License.
 """
-from os import walk, mkdir, listdir, rename, remove
+from os import walk, mkdir, listdir, remove
 from os.path import (relpath, join, expanduser, exists, split,
                      abspath, dirname, basename, isdir)
-from shutil import copy
+from shutil import copy, move
 from _compat import Queue
 from codecs import open
-from errno import ENOENT
+
 
 from templates import Template
 
@@ -78,6 +78,9 @@ def render(template_file, output_file, data):
 def loadvars(filepath):
     """
     Load visible vars from the rules file
+    :param filepath: path to the file with the vars
+    :type filepath: unicode
+    :rtype: dict
     """
     if not exists(filepath):
         return {}
@@ -125,10 +128,12 @@ def render_skin(name, output_path):
         path = to_rename.get()
         head, tail = split(path)
         name = Template(tail).render(data)
-        rename(path, join(head, name))
+        if name != tail:
+            move(path, join(head, name))
 
     try:
         remove(join(output_path, 'skin_rules.py'))
     except OSError as e:
-        if e.errno != ENOENT:
+        import errno
+        if e.errno != errno.ENOENT:
             raise
