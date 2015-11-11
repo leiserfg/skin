@@ -101,7 +101,7 @@ def render_skin(name, output_path):
     _skin_path = skin_path(name)
     to_rename = Queue()  # Copy first rename latter
 
-    data = loadvars(join(_skin_path, 'skin_rules'))
+    data = loadvars(join(_skin_path, 'skin_rules.py'))
 
     for root, folders, files in walk(_skin_path):
         rel = relpath(root, _skin_path)
@@ -127,7 +127,7 @@ def render_skin(name, output_path):
         rename(path, join(dirname, basename))
 
     try:
-        remove(join(output_path, 'skin_rules'))
+        remove(join(output_path, 'skin_rules.py'))
     except OSError as e:
         if e.errno != ENOENT:
             raise
