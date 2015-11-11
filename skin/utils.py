@@ -64,8 +64,6 @@ def prompt_bool(text, default=False, yes_choices=None, no_choices=None,
             return False
 
 
-__all__ = ["prompt", "prompt_bool", "echo_off_prompt", "rm", "call"]
-
 def echo_off_prompt(text, default=None, _test=None):
     """Ask a question via getpass() and return their answer.
 
@@ -84,20 +82,3 @@ def echo_off_prompt(text, default=None, _test=None):
             return resp.decode('utf-8')
         if default is not None:
             return default
-
-def rm(rel_path):
-    """
-    Remove wherever are in the rel_path (a file or a directory, not a link)
-    """
-    path = abspath(rel_path)
-    if isfile(path):
-        remove(path)
-        pformat('removed file', path, color='cyan')
-    elif isdir(path):
-        rmtree(path)
-        pformat('removed folder', path, color='cyan')
-
-    else:
-        raise OSError("You can't delete this path %s because it's not a " +
-                      "directory neither a file" % path)
-

@@ -9,7 +9,7 @@
     :license: BSD License.
 """
 from os import walk, mkdir, listdir, rename, remove
-from os.path import (relpath, join, split, expanduser, exists, 
+from os.path import (relpath, join, expanduser, exists, split,
                      abspath, dirname, basename, isdir)
 from shutil import copy
 from _compat import Queue
@@ -20,7 +20,7 @@ from templates import Template
 
 _here = unicode(dirname(abspath(__file__)))
 TEMPLATES_DIR = (expanduser(join(u'~', u'.skin')), join(_here, u'templates'))
-RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "rm", "call")
+RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "call")
 _skins = None
 
 
@@ -123,9 +123,9 @@ def render_skin(name, output_path):
 
     while not to_rename.empty():
         path = to_rename.get()
-        dirname, basename = split(path)
-        basename = Template(basename).render(data)
-        rename(path, join(dirname, basename))
+        head, tail = split(path)
+        name = Template(tail).render(data)
+        rename(path, join(head, name))
 
     try:
         remove(join(output_path, 'skin_rules.py'))
