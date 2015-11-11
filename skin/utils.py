@@ -13,7 +13,7 @@ try:
 except NameError:
     pass
 
-
+RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "call")
 
 def prompt(text, default=None, _test=None):
     """Ask a question via raw_input() and return their answer.

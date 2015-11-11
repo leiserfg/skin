@@ -20,7 +20,7 @@ from templates import Template
 
 _here = unicode(dirname(abspath(__file__)))
 TEMPLATES_DIR = (expanduser(join(u'~', u'.skin')), join(_here, u'templates'))
-RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "call")
+
 _skins = None
 
 
@@ -83,7 +83,7 @@ def loadvars(filepath):
         return {}
 
     import utils
-    glob = {k: getattr(utils, k) for k in RULES_UTILS}
+    glob = {k: getattr(utils, k) for k in utils.RULES_UTILS}
     local = {}
     execfile(filepath, glob, local)
     return local
