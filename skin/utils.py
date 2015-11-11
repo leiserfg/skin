@@ -2,18 +2,14 @@
 # -*- coding: utf-8 -*-
 
 from getpass import getpass
-from os import remove, getcwd
-from shutil import rmtree
-from os.path import isfile, isdir, abspath
-from subprocess import call
 
-from helpers import pformat
 try:
     input = raw_input
 except NameError:
     pass
 
 RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "call")
+
 
 def prompt(text, default=None, _test=None):
     """Ask a question via raw_input() and return their answer.
