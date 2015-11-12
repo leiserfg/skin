@@ -3,7 +3,7 @@
 import os
 from argparse import ArgumentParser
 from completion import completion
-from os import getcwdTE
+from os import getcwd
 from os.path import abspath
 
 from core import list_skins, render_skin, TEMPLATES_DIR
@@ -37,13 +37,12 @@ def autocomplete():
         current = ''
     if current.startswith('-'):
         print ' '.join(a for a in _args if a.startswith(current))
-    print '\n'.join(t for t in kernel.templates() if t.startswith(current))
+    print '\n'.join(t for t in list_skins() if t.startswith(current))
     exit(1)
 
 
 def main():
     autocomplete()
-    colorama.init()
     args = parser.parse_args()
     if args.list:
         for t in list_skins():
