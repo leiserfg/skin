@@ -8,7 +8,7 @@ try:
 except NameError:
     pass
 
-RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "call")
+RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt")
 
 
 def prompt(text, default=None, _test=None):
