@@ -10,7 +10,7 @@ setup(
     include_package_data = True,
     packages=find_packages(),
     description='a simple static template render',
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     license='BSD License',
     url='https://github.com/leiserfg/skin/',
     entry_points = {
