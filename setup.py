@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup,find_packages
+from setuptools import setup, find_packages
 from skin import __version__
 
 setup(
@@ -10,14 +10,10 @@ setup(
     include_package_data = True,
     packages=find_packages(),
     description='a simple static template render',
-    #long_description=open('README.rst').read(),
+    long_description=open('README.rst').read(),
     license='BSD License',
     url='https://github.com/leiserfg/skin/',
     entry_points = {
         'console_scripts': ['skin = skin.cli:main'],
     },
-    install_requires=[
-        'jinja2>=2.7',
-        'colorama>=0.2.5'
-        ]
 )
