@@ -4,7 +4,7 @@ import os
 from argparse import ArgumentParser
 import colorama
 import kernel
-import tools
+from completion import completion
 from core import list_skins, render_skin
 from os import getcwd
 from os.path import abspath
@@ -51,9 +51,9 @@ def main():
             print t
         return
     elif args.bash:
-        tools.completion('bash')
+        completion.completion('bash')
     elif args.zsh:
-        tools.completion('zsh')
+        completion.completion('zsh')
     elif args.template:
         render_skin(args.template, abspath(getcwd()))
     else:
