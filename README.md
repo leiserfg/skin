@@ -1,4 +1,4 @@
-```
+```lisp
 	 _______  _       _________ _       
 	(  ____ \| \    /\\__   __/( (    /|
 	| (    \/|  \  / /   ) (   |  \  ( |
@@ -11,28 +11,37 @@
 ```                                    
 Skin is a project template renderer (something like PasteScript but without Paste itself) powered by ~~Jinja2 and~~ a lot of needs of something like it.
 
+
+
 Installing
 ==========
 
 Install download this repo (or clone it) and just python setup.py install.
 
 
+Usage
+=====
+
+* List templates `skin -l`
+* Render a template `skin template_name`
+* Bash completion `skin -b >> ~/.profile`
+* Zsh completion `skin -z >> ~/.zshrc`
+
+
+If you wanna add templates, just make one and add it to your own ~/.skin folder.
+
+
 Hacking
 =======
 
-Development
------------
+Clone it, install in development mode
 
+```shel
 pip install -e .
+```
+and, hack on it!
 
-Architecture
------------
-Skin will be rewritten, the new architecture will be like this:
 
-* templates.py -> define the Template class with all the template stuff
-* utils.py -> functions used on the lib and/or the rules
-* core.py -> managing of the project template, rendering of a specific project template.
-* cli.py -> the whole thing :D
-* _compat.py -> things to make source usable y both pythons (2 and 3)
 
-Other files are still here for take code :D they will be removed sooner or latter 
+
+
