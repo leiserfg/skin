@@ -2,12 +2,11 @@
 
 import os
 from argparse import ArgumentParser
-import colorama
-import kernel
 from completion import completion
-from core import list_skins, render_skin
 from os import getcwd
 from os.path import abspath
+
+from core import list_skins, render_skin, TEMPLATES_DIR
 
 parser = ArgumentParser(description="Project templates filler", prog='skin')
 exclusives_group = parser.add_mutually_exclusive_group()
@@ -21,7 +20,7 @@ parser.add_argument('template',
                     help='Render a template in the '
                          'current working directory',
                     nargs='?')
-parser.epilog = "Put your own templates at: %s\n" % kernel._templates_dirs[0]
+parser.epilog = "Put your own templates at: %s\n" % TEMPLATES_DIR[0]
 
 # TODO: make it in a beautyfull way (maybe by using commands)
 _args = ['-l', '--list', '-b', '--bash', '-z', '--zsh']
@@ -38,13 +37,12 @@ def autocomplete():
         current = ''
     if current.startswith('-'):
         print ' '.join(a for a in _args if a.startswith(current))
-    print '\n'.join(t for t in kernel.templates() if t.startswith(current))
+    print '\n'.join(t for t in list_skins() if t.startswith(current))
     exit(1)
 
 
 def main():
     autocomplete()
-    colorama.init()
     args = parser.parse_args()
     if args.list:
         for t in list_skins():
