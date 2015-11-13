@@ -1,6 +1,6 @@
 if (CMAKE_COMPILER_IS_GNUCXX AND CMAKE_BUILD_TYPE STREQUAL "Release")
-  set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Werror -Wextra")
-  set (CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wall -Werror -Wextra")
+  set (CMAKE_CXX_FLAGS_DEBUG "$${CMAKE_CXX_FLAGS_DEBUG} -Wall -Werror -Wextra")
+  set (CMAKE_C_FLAGS_DEBUG "$${CMAKE_CXX_FLAGS_DEBUG} -Wall -Werror -Wextra")
 endif ()
 
 ################################################################################################
@@ -11,7 +11,7 @@ set (MAIN_SOURCES
   main.cpp
 )
 
-add_executable (${project_name} ${MAIN_SOURCES})
+add_executable (${project_name} $${MAIN_SOURCES})
 
 ################################################################################################
 ################################################################################################
