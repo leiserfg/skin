@@ -3,10 +3,7 @@
 
 from getpass import getpass
 
-try:
-    input = raw_input
-except NameError:
-    pass
+from _compat import input
 
 RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt")
 
