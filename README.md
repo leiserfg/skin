@@ -23,7 +23,7 @@ Hacking
 Development
 -----------
 
-pip install . -e
+pip install -e .
 
 Architecture
 -----------
