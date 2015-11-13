@@ -31,8 +31,8 @@ Usage
 If you wanna add templates, just make one and add it to your own ~/.skin folder.
 
 
-Hacking
-=======
+Contributing
+============
 
 Clone it, install in development mode
 
@@ -40,8 +40,3 @@ Clone it, install in development mode
 pip install -e .
 ```
 and, hack on it!
-
-
-
-
-
