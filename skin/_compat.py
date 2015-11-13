@@ -10,10 +10,10 @@ PY2 = sys.version_info[0] == 2
 
 if PY2:
     string_types = basestring
-    from Queue import Queue
+    input = raw_input
 else:
     string_types = str
-    from queue import Queue
+    input = input
 
 
 

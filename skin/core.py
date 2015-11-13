@@ -12,7 +12,6 @@ from os import walk, mkdir, listdir, remove
 from os.path import (relpath, join, expanduser, exists, split,
                      abspath, dirname, basename, isdir)
 from shutil import copy, move
-from _compat import Queue
 from codecs import open
 
 
@@ -102,7 +101,7 @@ def render_skin(name, output_path):
     :type output_path: unicode
     """
     _skin_path = skin_path(name)
-    to_rename = Queue()  # Copy first rename latter
+    to_rename = list()  # Copy first rename latter
 
     data = loadvars(join(_skin_path, 'skin_rules.py'))
 
@@ -117,18 +116,20 @@ def render_skin(name, output_path):
                 render(file_input, file_output, data)
             else:
                 copy(file_input, file_output)
-            to_rename.put(file_output)
+            to_rename.append(file_output)
 
         for folder in folders:
             folder_path = join(output_path, rel, folder)
             mkdir(folder_path)
-            to_rename.put(folder_path)
+            to_rename.append(folder_path)
 
-    while not to_rename.empty():
-        path = to_rename.get()
+    while len(to_rename):
+
+        path = to_rename.pop()
         head, tail = split(path)
         name = Template(tail).render(data)
         if name != tail:
+            pass
             move(path, join(head, name))
 
     try:
