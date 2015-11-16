@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     skin.templates
-    ~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~
 
     A minimal template engine. 
 

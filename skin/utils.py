@@ -1,5 +1,13 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+    skin.utils
+    ~~~~~~~~~~
+
+     Functions used internally and on the skins.
+
+    :copyright: (c) 2011 by the Werkzeug Team, see AUTHORS for more details.
+    :license: BSD License.
+"""
 
 from getpass import getpass
 

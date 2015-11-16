@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Utilities for writing code that runs on Python 2 and 3.
+    skin._compat
+    ~~~~~~~~~~~~
+
+    Things to do it work on python 2 & 3
+
+    :copyright: (c) 2014 by the Leiser Fernández Gallo.
+    :license: BSD License.
 """
 import sys
 
@@ -14,8 +20,6 @@ if PY2:
 else:
     string_types = str
     input = input
-
-
 
 
 def to_unicode(txt, encoding='utf8'):

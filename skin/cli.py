@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+    skin.cli
+    ~~~~~~~~~~~~
 
+    Console interface of skin
+
+    :copyright: (c) 2014 by the Leiser Fernández Gallo.
+    :license: BSD License.
+"""
 import os
 from argparse import ArgumentParser
 from completion import completion

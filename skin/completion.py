@@ -1,4 +1,13 @@
 # -*- coding: utf-8 -*-
+"""
+    skin.completion
+    ~~~~~~~~~~~~~~~
+
+    Stuff for completion on diferents shells (currently bash and zsh)
+
+    :copyright: (c) 2014 by the Leiser Fernández Gallo.
+    :license: BSD License.
+"""
 import sys
 
 COMPLETION_SCRIPTS = {
