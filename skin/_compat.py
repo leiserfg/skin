@@ -8,6 +8,7 @@
     :copyright: (c) 2014 by the Leiser Fernández Gallo.
     :license: BSD License.
 """
+from __future__ import print_function
 import sys
 
 
@@ -21,12 +22,13 @@ else:
     string_types = str
     _input = input
 
-def input(msg=None):
-    if msg:
-        msg = to_unicode(msg)
-        return to_unicode(_input(msg))
 
-    return to_unicode(_input())
+def input(msg=None):
+    dec = lambda x: x.decode(sys.stdin.encoding)
+    if msg:
+        #raw_input can be tricki with unicode
+        print(msg, end='')
+    return dec(_input())
 
 
 def to_unicode(txt, encoding='utf8'):
