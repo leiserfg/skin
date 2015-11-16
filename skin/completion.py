@@ -8,8 +8,8 @@
     :copyright: (c) 2014 by the Leiser Fernández Gallo.
     :license: BSD License.
 """
-import sys
 from __future__ import print_function
+import sys
 
 
 COMPLETION_SCRIPTS = {
@@ -34,7 +34,7 @@ function _skin_completion {
 compctl -K _skin_completion skin
 """,
     'fish': """
-complete -c skin -a '(skin -l)'
+    complete -c skin -x -a '(skin -l)'
     """
 }
 

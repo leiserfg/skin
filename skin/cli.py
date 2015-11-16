@@ -59,11 +59,11 @@ def main():
             print t
         return
     elif args.bash:
-        completion.completion('bash')
+        completion('bash')
     elif args.zsh:
-        completion.completion('zsh')
+        completion('zsh')
     elif args.fish:
-        completion.completion('fish')
+        completion('fish')
     elif args.template:
         render_skin(args.template, abspath(getcwd()))
     else:
