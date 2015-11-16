@@ -9,6 +9,8 @@
     :license: BSD License.
 """
 import sys
+from __future__ import print_function
+
 
 COMPLETION_SCRIPTS = {
     'bash': """
@@ -30,13 +32,16 @@ function _skin_completion {
              SKIN_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _skin_completion skin
-"""}
+""",
+    'fish': """
+complete -c skin -a '(skin -l)'
+    """
+}
 
 
 def completion(shell):
-    shell_options = COMPLETION_SCRIPTS.keys()
-    if shell in shell_options:
-        print COMPLETION_SCRIPTS[shell]
-    else:
+    try:
+        print(COMPLETION_SCRIPTS[shell])
+    except KeyError:
         sys.stderr.write('ERROR: You must pass %s\n' %
-                         ' or '.join(shell_options))
+                         ' or '.join(COMPLETION_SCRIPTS))
