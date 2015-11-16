@@ -3,7 +3,7 @@
 #prompt, prompt_bool, echo_off_prompt, rm, call
 
 
-class_name = prompt('class name: ')
+class_name = prompt('class name')
 class_hidenner = []
 for c in class_name:
     if c.isupper():

@@ -20,10 +20,11 @@ def prompt(text, default=None, _test=None):
     """Ask a question via raw_input() and return their answer.
 
     param text: prompt text
-    param default: default value if no answer is provided.
+    param default: default value if no answer is providedself.
     """
 
     text += ' [%s]' % default if default else ''
+    text += ': '
     while True:
         if _test is not None:
             print(text)
@@ -73,6 +74,7 @@ def echo_off_prompt(text, default=None, _test=None):
     """
 
     text += ' [%s]' % default if default else ''
+    text += ': '
     while True:
         if _test is not None:
             print(text)

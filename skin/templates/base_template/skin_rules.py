@@ -1,1 +1,1 @@
-template_name = prompt('template name:')
+template_name = prompt('template name')
