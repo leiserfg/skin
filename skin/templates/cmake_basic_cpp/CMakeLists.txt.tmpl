@@ -6,17 +6,17 @@ project (${project_name} CXX)
 ################################################################################################
 ################################################################################################
 
-math(EXPR ARCH "${CMAKE_SIZEOF_VOID_P} * 8")
+math(EXPR ARCH "$${CMAKE_SIZEOF_VOID_P} * 8")
 
 
-message (STATUS "PROYECTO ${PROJECT_PREFIX}${PROJECT_NAME} ==========================================")
-message (STATUS "              Arquitectura: ${ARCH} bits")
-message (STATUS "                Compilador: ${CMAKE_CXX_COMPILER}")
-message (STATUS "Directorio de construcción: ${PROJECT_BINARY_DIR}")
-message (STATUS "   Directorio del proyecto: ${PROJECT_SOURCE_DIR}")
-message (STATUS "               Bibliotecas: ${INSTALL_LIB_DIR}")
-message (STATUS "                 Cabeceras: ${INSTALL_INCLUDE_DIR}")
-message (STATUS "                     CMake: ${INSTALL_CMAKE_DIR}")
+message (STATUS "PROYECTO $${PROJECT_NAME} ==========================================")
+message (STATUS "              Arquitectura: $${ARCH} bits")
+message (STATUS "                Compilador: $${CMAKE_CXX_COMPILER}")
+message (STATUS "Directorio de construcción: $${PROJECT_BINARY_DIR}")
+message (STATUS "   Directorio del proyecto: $${PROJECT_SOURCE_DIR}")
+message (STATUS "               Bibliotecas: $${INSTALL_LIB_DIR}")
+message (STATUS "                 Cabeceras: $${INSTALL_INCLUDE_DIR}")
+message (STATUS "                     CMake: $${INSTALL_CMAKE_DIR}")
 message (STATUS "====================================================================================")
 
 ################################################################################################
