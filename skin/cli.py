@@ -8,12 +8,15 @@
     :copyright: (c) 2014 by the Leiser Fernández Gallo.
     :license: BSD License.
 """
+from __future__ import print_function
 import os
+
 from argparse import ArgumentParser
 from completion import completion
 from os import getcwd
 from os.path import abspath
 
+from skin import __version__
 from core import list_skins, render_skin, TEMPLATES_DIR
 
 parser = ArgumentParser(description="Project templates filler", prog='skin')
@@ -26,6 +29,8 @@ exclusives_group.add_argument(
     '-z', '--zsh', action='store_true', help='Zsh Completion')
 exclusives_group.add_argument(
     '-f', '--fish', action='store_true', help='Fish Completion')
+exclusives_group.add_argument(
+    '-v', '--version', action='store_true', help='Show version')
 parser.add_argument('template',
                     help='Render a template in the '
                          'current working directory',
@@ -33,7 +38,8 @@ parser.add_argument('template',
 parser.epilog = "Put your own templates at: %s\n" % TEMPLATES_DIR[0]
 
 # TODO: make it in a beautyfull way (maybe by using commands)
-_args = ['-l', '--list', '-b', '--bash', '-z', '--zsh', '-f', '--fish']
+_args = ['-l', '--list', '-b', '--bash', '-z', '--zsh',
+         '-f', '--fish', '-v', '--version']
 
 
 def autocomplete():
@@ -46,8 +52,8 @@ def autocomplete():
     except IndexError:
         current = ''
     if current.startswith('-'):
-        print ' '.join(a for a in _args if a.startswith(current))
-    print '\n'.join(t for t in list_skins() if t.startswith(current))
+        print (' '.join(a for a in _args if a.startswith(current)))
+    print ('\n'.join(t for t in list_skins() if t.startswith(current)))
     exit(1)
 
 
@@ -56,8 +62,10 @@ def main():
     args = parser.parse_args()
     if args.list:
         for t in list_skins():
-            print t
+            print(t)
         return
+    elif args.version:
+        print('skin {0}'.format(__version__))
     elif args.bash:
         completion('bash')
     elif args.zsh:
