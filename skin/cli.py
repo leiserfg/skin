@@ -24,6 +24,8 @@ exclusives_group.add_argument(
     '-b', '--bash', action='store_true', help='Bash Completion')
 exclusives_group.add_argument(
     '-z', '--zsh', action='store_true', help='Zsh Completion')
+exclusives_group.add_argument(
+    '-f', '--fish', action='store_true', help='Fish Completion')
 parser.add_argument('template',
                     help='Render a template in the '
                          'current working directory',
@@ -31,7 +33,7 @@ parser.add_argument('template',
 parser.epilog = "Put your own templates at: %s\n" % TEMPLATES_DIR[0]
 
 # TODO: make it in a beautyfull way (maybe by using commands)
-_args = ['-l', '--list', '-b', '--bash', '-z', '--zsh']
+_args = ['-l', '--list', '-b', '--bash', '-z', '--zsh', '-f', '--fish']
 
 
 def autocomplete():
@@ -60,6 +62,8 @@ def main():
         completion.completion('bash')
     elif args.zsh:
         completion.completion('zsh')
+    elif args.fish:
+        completion.completion('fish')
     elif args.template:
         render_skin(args.template, abspath(getcwd()))
     else:
