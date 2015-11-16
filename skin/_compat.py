@@ -16,10 +16,17 @@ PY2 = sys.version_info[0] == 2
 
 if PY2:
     string_types = basestring
-    input = raw_input
+    _input = raw_input
 else:
     string_types = str
-    input = input
+    _input = input
+
+def input(msg=None):
+    if msg:
+        msg = to_unicode(msg)
+        return to_unicode(_input(msg))
+
+    return to_unicode(_input())
 
 
 def to_unicode(txt, encoding='utf8'):

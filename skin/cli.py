@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     skin.cli
-    ~~~~~~~~~~~~
+    ~~~~~~~~
 
     Console interface of skin
 
