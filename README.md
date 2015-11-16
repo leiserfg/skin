@@ -26,6 +26,7 @@ Usage
 * Render a template `skin template_name`
 * Bash completion `skin -b >> ~/.profile`
 * Zsh completion `skin -z >> ~/.zshrc`
+* Fish completion `skin -f > ~/.config/fish/completions/skin.fish`
 
 
 If you wanna add templates, just make one and add it to your own ~/.skin folder.
