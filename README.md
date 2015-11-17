@@ -45,7 +45,7 @@ and, hack on it!
 TODO
 ====
 
-* Fish completion
+* ~~Fish completion~~ DONE
 * Stylistic fixes on the source
 * Make work OK on Window
 * Make work OK on python3 (maybe)
