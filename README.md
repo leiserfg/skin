@@ -16,7 +16,7 @@ Skin is a project template renderer (something like PasteScript but without Past
 Installing
 ==========
 
-Install download this repo (or clone it) and just python setup.py install.
+Download this repo (or clone it) and just python setup.py install.
 
 
 Usage
