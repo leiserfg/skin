@@ -1,6 +1,7 @@
-package = prompt('package name', rand_name())
-version = prompt('package version', '0.1')
-author = prompt('package author: ')
-author_email = prompt('package author email')
-description = prompt('description', '')
-url = prompt('url')
+import getpass
+package = prompt('Package name', rand_name())
+version = prompt('Package version', '0.1')
+author = prompt("Author", getpass.getuser())
+author_email = prompt('Package author email')
+description = prompt('Description', '')
+url = prompt('Url')

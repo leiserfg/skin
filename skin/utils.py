@@ -11,7 +11,7 @@
 
 from getpass import getpass
 
-from _compat import input
+from _compat import input, to_unicode
 from _santoral import rand_name
 
 RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "rand_name")
@@ -33,7 +33,7 @@ def prompt(text, default=None, _test=None):
         else:
             resp = input(text)
         if resp:
-            return resp.decode('utf-8')
+            return resp
         if default is not None:
             return default
 
@@ -83,6 +83,6 @@ def echo_off_prompt(text, default=None, _test=None):
         else:
             resp = getpass(text)
         if resp:
-            return resp.decode('utf-8')
+            return to_unicode(resp)
         if default is not None:
             return default
