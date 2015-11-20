@@ -12,8 +12,9 @@
 from getpass import getpass
 
 from _compat import input
+from _santoral import rand_name
 
-RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt")
+RULES_UTILS = ("prompt", "prompt_bool", "echo_off_prompt", "rand_name")
 
 
 def prompt(text, default=None, _test=None):

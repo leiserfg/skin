@@ -1,4 +1,4 @@
-package = prompt('package name')
+package = prompt('package name', rand_name())
 version = prompt('package version', '0.1')
 author = prompt('package author: ')
 author_email = prompt('package author email')
